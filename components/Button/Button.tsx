@@ -9,7 +9,7 @@ export function Button({
 }: PressableProps & { text: string; disabled?: boolean }) {
   return (
     <Pressable {...props} disabled={disabled}>
-      <View style={styles.button}>
+      <View style={[styles.button, { opacity: disabled ? 0.5 : 1 }]}>
         <Text style={styles.buttonText}>{text}</Text>
       </View>
     </Pressable>

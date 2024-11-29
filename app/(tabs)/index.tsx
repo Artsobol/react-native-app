@@ -118,16 +118,6 @@ export default function HomeScreen() {
       : "Зарегистрироваться ->";
   };
 
-  const getButtonStyle = () => {
-    const { email, password, confirmPassword, nickname } = fields;
-    return [
-      styles.buttonContainer,
-      {
-        opacity: !email || !password || !confirmPassword || !nickname ? 0.5 : 1,
-      },
-    ];
-  };
-
   const getButtonPress = () => {
     return isLogin ? handleAuth : handleRegistration;
   };
@@ -224,7 +214,7 @@ export default function HomeScreen() {
             {/* Кнопка */}
             <Button
               text={getButtonText()}
-              style={getButtonStyle()}
+              style={styles.buttonContainer}
               onPress={getButtonPress()}
               disabled={!isFormValid}
             />
