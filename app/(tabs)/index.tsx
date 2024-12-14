@@ -2,6 +2,7 @@ import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { InputGroup } from "@/components/InputGroup/InputGroup";
 import { useState } from "react";
+import { useFonts } from "expo-font";
 import styles from "./indexStyle";
 import {
   Image,
@@ -14,6 +15,11 @@ import {
 } from "react-native";
 
 export default function HomeScreen() {
+  const [fontsLoaded] = useFonts({
+    InterBold: require("@/assets/fonts/Inter-Bold.ttf"),
+    InterMedium: require("@/assets/fonts/Inter-Medium.ttf"),
+  });
+
   const [isLogin, setIsLogin] = useState(true);
 
   const [fields, setFields] = useState({
@@ -81,16 +87,89 @@ export default function HomeScreen() {
     Object.values(errors).some((error) => error.isError)
   );
 
-  const handleRegistration = () => {
+  const handleRegistration = async () => {
     if (validateForm()) {
-      // TODO регистрацию
+      const { email, password, nickname } = fields;
+
+      try {
+        const response = await fetch("http://127.0.0.1", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            nickname,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log("Регистрация успешна:", data.message);
+          resetFields();
+          setIsLogin(true);
+        } else {
+          console.error("Ошибка регистрации:", data);
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: {
+              isError: true,
+              message: data.email || "Ошибка регистрации",
+            },
+            password: { isError: true, message: data.password || "" },
+          }));
+        }
+      } catch (error) {
+        console.error("Ошибка подключения к серверу:", error);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: { isError: true, message: "Ошибка подключения к серверу" },
+        }));
+      }
     }
   };
 
-  const handleAuth = () => {
-    const { email, password } = fields;
-    if (emailRegex.test(email)) {
-      // TODO авторизацию
+  const handleAuth = async () => {
+    if (validateForm()) {
+      const { email, password } = fields;
+
+      try {
+        const response = await fetch("http://127.0.0.1", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          console.log("Авторизация успешна:", data.message);
+
+          if (data.token) {
+            console.log("Ваш токен:", data.token);
+          }
+        } else {
+          console.error("Ошибка авторизации:", data);
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            email: { isError: true, message: "Неверный Email или пароль" },
+            password: { isError: true, message: "Неверный Email или пароль" },
+          }));
+        }
+      } catch (error) {
+        console.error("Ошибка подключения к серверу:", error);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: { isError: true, message: "Ошибка подключения к серверу" },
+        }));
+      }
     }
   };
 
@@ -135,7 +214,6 @@ export default function HomeScreen() {
             source={require("@/assets/images/Logo.png")}
             style={styles.logo}
           />
-
           <View style={styles.content}>
             {/* Вкладки */}
             <View style={styles.tabContainer}>
@@ -146,7 +224,13 @@ export default function HomeScreen() {
                   resetFields();
                 }}
               >
-                <Text style={[styles.tabText, isLogin && styles.activeTabText]}>
+                <Text
+                  style={[
+                    styles.tabText,
+                    isLogin && styles.activeTabText,
+                    { fontFamily: "InterBold" },
+                  ]}
+                >
                   Авторизация
                 </Text>
               </Pressable>
@@ -158,7 +242,11 @@ export default function HomeScreen() {
                 }}
               >
                 <Text
-                  style={[styles.tabText, !isLogin && styles.activeTabText]}
+                  style={[
+                    styles.tabText,
+                    !isLogin && styles.activeTabText,
+                    { fontFamily: "InterBold" },
+                  ]}
                 >
                   Регистрация
                 </Text>

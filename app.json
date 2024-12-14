@@ -28,6 +28,7 @@
       ],
       "expo-font"
     ],
+    "assetBundlePatterns": ["**/*"],
     "experiments": {
       "typedRoutes": true
     }

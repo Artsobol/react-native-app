@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useFonts } from "expo-font";
 import {
   TextInput,
   TextInputProps,
@@ -27,6 +28,10 @@ export function Input({
   value?: string;
   onChangeText?: (text: string) => void;
 }) {
+  const [fontsLoaded] = useFonts({
+    InterMedium: require("@/assets/fonts/Inter-Medium.ttf"),
+  });
+
   const [isSecure, setIsSecure] = useState(isPassword);
 
   const dynamicPlaceholder = isError
@@ -40,7 +45,7 @@ export function Input({
   return (
     <View style={[styles.container, style, isError && styles.inputError]}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { fontFamily: "InterMedium" }]}
         secureTextEntry={isPassword && isSecure}
         placeholder={dynamicPlaceholder}
         placeholderTextColor={isError ? "#FA0043" : "#808080"}
