@@ -1,6 +1,10 @@
 import React from "react";
-import { Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
+import { Colors } from "@/shared/tokens";
+import HouseIcon from "@/assets/icons/houseIcon";
+import ScannerIcon from "@/assets/icons/scannerIcon";
+import ProfileIcon from "@/assets/icons/profileIcon";
 
 export default function Layout() {
   return (
@@ -8,29 +12,44 @@ export default function Layout() {
       screenOptions={({ route }) => ({
         tabBarIcon: () => {
           const icons: Record<
-            "index" | "scanner" | "saveFood" | "settings",
-            any
+            "index" | "scanner" | "saveFood",
+            React.ReactNode
           > = {
-            index: require("../../assets/icons/FirstIcon.png"),
-            scanner: require("../../assets/icons/SecondIcon.png"),
-            saveFood: require("../../assets/icons/ThirdIcon.png"),
-            settings: require("../../assets/icons/FourthIcon.png"),
+            index: <ProfileIcon width={32} height={32} fill={Colors.black} />,
+            scanner: <ScannerIcon width={32} height={32} fill={Colors.black}/>,
+            saveFood: <HouseIcon width={32} height={32} fill={Colors.black}/>,
           };
 
-          return (
-            <Image
-              source={icons[route.name as keyof typeof icons]}
-              style={{ width: 24, height: 24 }}
-            />
-          );
+          return icons[route.name as keyof typeof icons];
         },
-        tabBarStyle: { height: 60 },
+        tabBarStyle: styles.tabBar,
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarItemStyle: styles.tabbarItem,
       })}
     >
-      <Tabs.Screen name="index" options={{ title: "Профиль" }} />
       <Tabs.Screen name="scanner" options={{ title: "Сканнер" }} />
       <Tabs.Screen name="saveFood" options={{ title: "Сохраненная еда" }} />
-      <Tabs.Screen name="settings" options={{ title: "Настройки" }} />
+      <Tabs.Screen name="index" options={{ title: "Профиль" }} />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+      alignSelf: 'center',
+      marginLeft: 30,
+      bottom: 20,
+      height: 90,
+      backgroundColor: Colors.green,
+      borderRadius: 60,
+      position: "absolute",
+      width: "85%"
+  },
+  tabbarItem: {
+    paddingVertical: 25,
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1
+  }
+})
