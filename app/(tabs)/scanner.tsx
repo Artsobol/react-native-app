@@ -155,7 +155,9 @@ export default function App() {
       </View>
       <View style={styles.infoContainer}>
         <View style={styles.titleInfoContainer}>
-          <Text style={styles.productName}>{lastScannedItem.name}</Text>
+          <Text style={styles.productName} adjustsFontSizeToFit
+  numberOfLines={1} minimumFontScale={0.5}
+  ellipsizeMode="tail">{lastScannedItem.name}</Text>
         </View>
         <View style={styles.kcalInfoContainer}>
           <Text style={styles.productCalories}>
@@ -187,7 +189,9 @@ export default function App() {
       </View>
       <View style={styles.infoModalContainer}>
         <View style={styles.titleInfoContainer}>
-        <Text style={styles.productName}>{lastScannedItem?.name || "Item"}</Text>
+        <Text style={styles.productName} adjustsFontSizeToFit
+  numberOfLines={1} minimumFontScale={0.5}
+  ellipsizeMode="tail">{lastScannedItem?.name || "Item"}</Text>
         </View>
         <View style={styles.kcalInfoContainer}>
         <Text style={styles.productCalories}>per serving</Text>
@@ -308,13 +312,15 @@ const styles = StyleSheet.create({
     height: '50%',
     justifyContent: 'center',
     paddingLeft: 10,
-    paddingTop: 10
+    paddingTop: 5,
+    flexShrink: 1
   },
 
   productName: {
     fontFamily: "InterMedium",
     fontWeight: "400",
-    fontSize: 36
+    fontSize: 36,
+    flexShrink: 1
   },
 
   kcalInfoContainer: {

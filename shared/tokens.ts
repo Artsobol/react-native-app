@@ -6,5 +6,6 @@ export const Colors = {
     white: "#FFFFFF",
     mintWhite: '#F2F3F4',
     red: "#FF0000",
-    mediumGray: "#696969"
+    mediumGray: "#696969",
+    lightBlue: '#F0F8FF'
 }
