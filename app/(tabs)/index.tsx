@@ -75,7 +75,8 @@ const styles = StyleSheet.create({
     flex: 1,
       backgroundColor: "transparent",
       alignItems: "center",
-      //justifyContent: "center"
+      //justifyContent: "center",
+      paddingHorizontal: 35,
   },
 
   titleContainer: {
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     fontWeight: "700"
   },
   main: {
-    width: "80%",
+    width: "100%",
     height: "60%",
     alignItems: 'center',
     //justifyContent: 'center',
