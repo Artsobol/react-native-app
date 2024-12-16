@@ -63,7 +63,7 @@ export default function App() {
         const nutriscore = product.nutriscore;
         const nutriscore_data = product.nutriscore_data;
         const fat = nutriments?.['fat'] ?? nutriments?.['fat_100g'] ?? "?";
-        console.log(fat); // 0
+       // console.log(fat); // 0
         const calories = nutriments?.['energy-kcal'] ?? nutriments?.['energy-kcal_100g'] ?? "?";
         const sugars = nutriments?.['sugars'] ?? nutriments?.['sugars_100g'] ?? "?";
         const fiber = nutriscore?.['2021']?.['data']?.['fiber'] ?? nutriscore_data?.['fiber'] ?? nutriscore?.['2021']?.['data']?.['fiber_value'] ?? "?";

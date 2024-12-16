@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import { Image, View, Text, StyleSheet, ImageBackground, TextInput, Pressable, Alert } from "react-native";
 import { Colors } from "@/shared/tokens";
@@ -42,8 +42,8 @@ export default function Profile() {
             <Text style={styles.text}>Username_test</Text>
           </View>
           <View style={styles.inputContainer}>
-            <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#696969" />
-            <TextInput style={styles.input} placeholder="Логин" placeholderTextColor="#696969" />
+            <TextInput style={styles.input} placeholder="Email" placeholderTextColor="#696969" editable={false} />
+            <TextInput style={styles.input} placeholder="Логин" placeholderTextColor="#696969" editable={false}/>
             <TextInput style={styles.input} placeholder="Пароль" placeholderTextColor="#696969" secureTextEntry />
             <TextInput style={styles.input} placeholder="Повторите пароль" placeholderTextColor="#696969" secureTextEntry/>
             <Pressable style={({pressed}) => [styles.confirmButton, pressed && {opacity: 0.5}]}
@@ -80,10 +80,11 @@ const styles = StyleSheet.create({
 
   titleContainer: {
     marginTop: 82,
-    marginLeft: 13,
+    marginLeft: 45,
     marginRight: 158,
     width: 231,
-    height: 60,
+    height: 70,
+    paddingBottom: 10,
     marginBottom: 10,
     //backgroundColor: Colors.green
   },
@@ -105,14 +106,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: "100%",
     height: "13%",
-    gap: 10,
+    gap: 5,
     marginTop: 14,
     marginBottom: 15,
     //backgroundColor: Colors.lightBlue
   },
   text: {
     fontFamily: "SFMedium",
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: "400"
   },
 

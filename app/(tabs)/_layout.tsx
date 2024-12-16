@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, StyleSheet } from "react-native";
-import { Tabs } from "expo-router";
+import { Tabs, Stack } from "expo-router";
 import { Colors } from "@/shared/tokens";
 import HouseIcon from "@/assets/icons/houseIcon";
 import ScannerIcon from "@/assets/icons/scannerIcon";
