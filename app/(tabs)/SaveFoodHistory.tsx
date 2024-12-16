@@ -6,6 +6,7 @@ import { GroupCards } from "@/components/GroupCards/GroupCards";
 const cardData = [
   {
     title: "Wine",
+    rating: "A",
     quality: "Terrible",
     time: "2 hours ago",
     type: "Whole foods",
@@ -13,6 +14,7 @@ const cardData = [
   },
   {
     title: "Another Wine",
+    rating: "B",
     quality: "Bad",
     time: "3 hours ago",
     type: "Local Market",
@@ -20,6 +22,7 @@ const cardData = [
   },
   {
     title: "Best Wine",
+    rating: "A",
     quality: "Amazing",
     time: "1 day ago",
     type: "Wine Shop",
@@ -27,6 +30,7 @@ const cardData = [
   },
   {
     title: "Red Delight",
+    rating: "A",
     quality: "Good",
     time: "5 hours ago",
     type: "Supermarket",
@@ -34,6 +38,7 @@ const cardData = [
   },
   {
     title: "Golden Reserve",
+    rating: "C",
     quality: "Excellent",
     time: "6 hours ago",
     type: "Wine Boutique",
@@ -41,6 +46,7 @@ const cardData = [
   },
   {
     title: "Vintage Sparkle",
+    rating: "E",
     quality: "Outstanding",
     time: "2 days ago",
     type: "Winery",
@@ -48,6 +54,7 @@ const cardData = [
   },
   {
     title: "Rustic Red",
+    rating: "A",
     quality: "Moderate",
     time: "7 hours ago",
     type: "Farmers Market",
@@ -55,6 +62,7 @@ const cardData = [
   },
   {
     title: "Elegant Rose",
+    rating: "A",
     quality: "Fair",
     time: "4 hours ago",
     type: "Convenience Store",
@@ -62,6 +70,7 @@ const cardData = [
   },
   {
     title: "Smooth White",
+    rating: "A",
     quality: "Great",
     time: "3 days ago",
     type: "Online Store",
@@ -69,6 +78,7 @@ const cardData = [
   },
   {
     title: "Bold Merlot",
+    rating: "A",
     quality: "Decent",
     time: "1 week ago",
     type: "Specialty Shop",

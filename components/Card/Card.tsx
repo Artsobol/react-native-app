@@ -4,15 +4,15 @@ import { TextWithIcon } from "../TextWithIcon/TextWithIcon";
 
 export function Card({
   title,
-  quality,
+  brand = "Unknown brand",
   time,
-  type,
+  rating,
   ...props
 }: {
   title: string;
-  quality: string;
+  brand?: string;
   time: string;
-  type: string;
+  rating?: string;
 }) {
   return (
     <View style={styles.card} {...props}>
@@ -20,25 +20,27 @@ export function Card({
         <Image
           source={require("@/assets/images/cardImage.png")}
           style={styles.imageCard}
-        ></Image>
+        />
       </View>
 
       <View style={styles.about}>
-        <View style={styles.nameAndButton}>
-          <Text style={styles.text}>{title}</Text>
-          <Pressable>
-            <Image
-              source={require("@/assets/images/cardButton.png")}
-              style={styles.buttonImage}
-            />
-          </Pressable>
-        </View>
-        <View style={styles.description}>
-          <TextWithIcon text={quality} source="cardEllypse" />
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.brand}>{brand}</Text>
+        <View style={styles.infoRow}>
           <TextWithIcon text={time} source="cardTime" />
-          <TextWithIcon text={type} source="cardType" />
+          <View style={styles.ratingCircle}>
+            <Text style={styles.ratingText}>{rating}</Text>
+          </View>
         </View>
       </View>
+
+      <Pressable style={styles.arrowButton}>
+        <Image
+          source={require("@/assets/images/cardButton.png")}
+          style={{ width: 26, height: 26 }}
+          resizeMode="contain"
+        />
+      </Pressable>
     </View>
   );
 }
